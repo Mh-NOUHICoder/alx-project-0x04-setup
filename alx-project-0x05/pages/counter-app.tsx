@@ -1,15 +1,14 @@
 import { useState } from 'react';
+import { useRouter }  from 'next/navigation';
+import { useCount } from '@/context/CountContext';
 
 const CounterApp: React.FC = () => {
-  const [count, setCount] = useState(0);
+  const { count, increment, decrement } = useCount();
+  const router = useRouter();
 
-  const increment = () => {
-    setCount(count + 1);
-  };
+  
 
-  const decrement = () => {
-    setCount(count > 0 ? count - 1 : 0);
-  };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-blue-600  flex flex-col justify-center items-center text-white">
@@ -45,6 +44,13 @@ const CounterApp: React.FC = () => {
           className="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-8 rounded-full text-lg transition duration-300 shadow-lg transform hover:scale-105"
         >
           Decrement 👎
+        </button>
+
+        <button
+          onClick={() => router.push('/')}
+          className="bg-black hover:bg-black/50 text-white font-semibold py-3 px-8 rounded-full text-lg transition duration-300 shadow-lg transform hover:scale-105"
+        >
+          Back Home
         </button>
       </div>
 
